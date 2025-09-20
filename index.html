@@ -8,6 +8,46 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+<script>
+// Простейший переключатель вкладок
+document.addEventListener('DOMContentLoaded', function() {
+    // Функция для переключения вкладок
+    function showTab(tabName) {
+        console.log('Показываем вкладку:', tabName);
+        
+        // Скрываем все вкладки
+        document.querySelectorAll('.tab-content').forEach(tab => {
+            tab.style.display = 'none';
+        });
+        
+        // Показываем нужную вкладку
+        const targetTab = document.getElementById(tabName + '-content');
+        if (targetTab) {
+            targetTab.style.display = 'block';
+        }
+        
+        // Обновляем активные ссылки
+        document.querySelectorAll('.tab-link').forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('data-tab') === tabName) {
+                link.classList.add('active');
+            }
+        });
+    }
+    
+    // Вешаем обработчики на все ссылки вкладок
+    document.querySelectorAll('.tab-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const tabName = this.getAttribute('data-tab');
+            showTab(tabName);
+        });
+    });
+    
+    // Показываем первую вкладку
+    showTab('main');
+});
+</script>
 <body>
     <!-- Шапка сайта -->
     <header>
