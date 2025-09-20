@@ -1,0 +1,857 @@
+/* Базовые стили */
+:root {
+    --primary: #3c40c6;
+    --primary-dark: #2d30a8;
+    --secondary: #ffa801;
+    --dark: #1e272e;
+    --light: #f5f5f5;
+    --gray: #808e9b;
+    --success: #05c46b;
+    --border: #e0e0e0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fff;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Шапка сайта */
+header {
+    background: #fff;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-icon {
+    background: var(--primary);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.logo-icon i {
+    font-size: 20px;
+}
+
+.logo-text h1 {
+    font-size: 20px;
+    color: var(--dark);
+    margin-bottom: 2px;
+}
+
+.logo-text p {
+    font-size: 12px;
+    color: var(--gray);
+}
+
+/* Главные вкладки */
+.main-tabs ul {
+    display: flex;
+    list-style: none;
+    gap: 5px;
+}
+
+.main-tabs li {
+    margin: 0;
+}
+
+.tab-link {
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: all 0.3s;
+    display: block;
+}
+
+.tab-link:hover {
+    background: var(--light);
+    color: var(--primary);
+}
+
+.tab-link.active {
+    background: var(--primary);
+    color: white;
+}
+
+.header-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.header-contact .phone {
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.btn {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.3s;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn:hover {
+    background: var(--primary-dark);
+}
+
+.btn-small {
+    padding: 8px 15px;
+    font-size: 14px;
+}
+
+.btn-large {
+    padding: 15px 30px;
+    font-size: 16px;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+}
+
+.btn-outline:hover {
+    background: var(--primary);
+    color: white;
+}
+
+/* Основной контент */
+.main-content {
+    margin-top: 100px;
+    min-height: calc(100vh - 200px);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.tab-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.tab-header h2 {
+    margin-bottom: 10px;
+}
+
+.tab-header p {
+    color: var(--gray);
+    font-size: 1.1rem;
+}
+
+/* Герой секция */
+.hero {
+    background: linear-gradient(rgba(30, 39, 46, 0.8), rgba(30, 39, 46, 0.8)), url('https://placehold.co/1200x600/3c40c6/ffffff?text=Электромонтаж') no-repeat center center/cover;
+    color: #fff;
+    padding: 60px 40px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.hero-content h2 {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-features {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.hero-features .feature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.hero-features .feature i {
+    color: var(--secondary);
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Быстрые услуги */
+.quick-services {
+    margin-bottom: 40px;
+}
+
+.quick-services h3 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--dark);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.service-card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
+.service-card i {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+.service-card h4 {
+    margin-bottom: 10px;
+    color: var(--dark);
+}
+
+.service-card p {
+    color: var(--primary);
+    font-weight: 500;
+}
+
+/* Вертикальные вкладки */
+.vertical-tabs {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.vertical-tab-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.vertical-tab-link {
+    padding: 15px 20px;
+    background: var(--light);
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font-weight: 500;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.vertical-tab-link:hover {
+    background: #e8e8e8;
+}
+
+.vertical-tab-link.active {
+    background: var(--primary);
+    color: white;
+}
+
+.vertical-tab-content {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.vertical-tab-pane {
+    display: none;
+}
+
+.vertical-tab-pane.active {
+    display: block;
+}
+
+.vertical-tab-pane h3 {
+    margin-bottom: 20px;
+    color: var(--dark);
+}
+
+.vertical-tab-pane ul {
+    list-style: none;
+    margin-bottom: 25px;
+}
+
+.vertical-tab-pane li {
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+}
+
+.vertical-tab-pane li:before {
+    content: "•";
+    color: var(--primary);
+    font-weight: bold;
+    position: absolute;
+    left: 10px;
+}
+
+.price-example {
+    background: var(--light);
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary);
+}
+
+.price-example h4 {
+    margin-bottom: 10px;
+    color: var(--dark);
+}
+
+/* Таблицы цен */
+.price-table {
+    overflow-x: auto;
+}
+
+.price-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.price-table tr {
+    border-bottom: 1px solid var(--border);
+}
+
+.price-table td {
+    padding: 12px 15px;
+}
+
+.price-table td:first-child {
+    width: 70%;
+}
+
+.price-table td:last-child {
+    text-align: right;
+    font-weight: 500;
+    color: var(--primary);
+}
+
+.price-notice {
+    background: var(--light);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.price-notice p {
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+/* Калькулятор */
+.calculator-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    background: var(--light);
+    padding: 40px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+
+.calculator-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: var(--dark);
+}
+
+.form-group input, .form-group select {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+}
+
+.calculator-result {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.result-sum {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 15px 0;
+    text-align: center;
+}
+
+.result-details {
+    margin: 20px 0;
+}
+
+.result-details ul {
+    list-style: none;
+    margin-top: 10px;
+}
+
+.result-details li {
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.result-details li:before {
+    content: "✓";
+    color: var(--success);
+    position: absolute;
+    left: 0;
+}
+
+/* Портфолио */
+.portfolio-filter {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    background: var(--light);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.filter-btn:hover {
+    background: #e8e8e8;
+}
+
+.filter-btn.active {
+    background: var(--primary);
+    color: white;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.portfolio-item {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-5px);
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.portfolio-info {
+    padding: 20px;
+}
+
+.portfolio-info h4 {
+    margin-bottom: 10px;
+    color: var(--dark);
+}
+
+.portfolio-info p {
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+/* Контакты */
+.contacts-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.contact-info h3 {
+    margin-bottom: 25px;
+    color: var(--dark);
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.contact-item i {
+    font-size: 1.2rem;
+    color: var(--primary);
+    margin-top: 3px;
+}
+
+.contact-item a {
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 3px;
+}
+
+.contact-item p {
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+.social-links h4 {
+    margin-bottom: 15px;
+    color: var(--dark);
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: background 0.3s;
+    font-size: 1.2rem;
+}
+
+.social-icons a:hover {
+    background: var(--primary-dark);
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-form input, .contact-form select, .contact-form textarea {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.map-container {
+    background: var(--light);
+    border-radius: 10px;
+    padding: 40px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.map-placeholder {
+    color: var(--gray);
+}
+
+.map-placeholder i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: var(--primary);
+}
+
+/* Футер */
+footer {
+    background: var(--dark);
+    color: white;
+    padding: 50px 0 20px;
+    margin-top: 40px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.footer-info .logo {
+    margin-bottom: 15px;
+}
+
+.footer-info .logo-text h3 {
+    color: white;
+}
+
+.footer-info p {
+    color: #a0a0a0;
+    line-height: 1.6;
+}
+
+.footer-nav h4, .footer-contact h4 {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.footer-nav ul {
+    list-style: none;
+}
+
+.footer-nav ul li {
+    margin-bottom: 10px;
+}
+
+.footer-nav ul li a {
+    text-decoration: none;
+    color: #a0a0a0;
+    transition: color 0.3s;
+}
+
+.footer-nav ul li a:hover {
+    color: white;
+}
+
+.footer-contact a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.footer-contact p {
+    color: #a0a0a0;
+    margin-bottom: 8px;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #2c3e50;
+    color: #a0a0a0;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Адаптивность */
+@media (max-width: 992px) {
+    .vertical-tabs {
+        grid-template-columns: 1fr;
+    }
+    
+    .calculator-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .contacts-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-content h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .main-tabs ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .main-tabs li {
+        margin: 5px;
+    }
+    
+    .tab-link {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+    
+    .header-contact {
+        align-items: center;
+    }
+    
+    .main-content {
+        margin-top: 140px;
+    }
+    
+    .hero {
+        padding: 40px 20px;
+    }
+    
+    .hero-features {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .portfolio-filter {
+        flex-direction: column;
+    }
+    /* Добавьте в конец style.css */
+.tab-content {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    display: none;
+}
+
+.tab-content.active {
+    opacity: 1;
+    transform: translateY(0);
+    display: block;
+}
+
+.vertical-tab-pane {
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    display: none;
+}
+
+.vertical-tab-pane.active {
+    opacity: 1;
+    transform: translateX(0);
+    display: block;
+}
+
+/* Анимация для кнопок вкладок */
+.tab-link {
+    transition: all 0.3s ease;
+}
+
+.vertical-tab-link {
+    transition: all 0.3s ease;
+}
+}

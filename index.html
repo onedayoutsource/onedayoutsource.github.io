@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ИП Волков - Электромонтажные работы</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>ИП Волков</h1>
+                    <p>Электромонтажные работы</p>
+                </div>
+            </div>
+            
+            <!-- Горизонтальные вкладки -->
+            <nav class="main-tabs">
+                <ul>
+                    <li><a href="#main" class="tab-link active" data-tab="main">Главная</a></li>
+                    <li><a href="#services" class="tab-link" data-tab="services">Услуги</a></li>
+                    <li><a href="#prices" class="tab-link" data-tab="prices">Цены</a></li>
+                    <li><a href="#calculator" class="tab-link" data-tab="calculator">Калькулятор</a></li>
+                    <li><a href="#portfolio" class="tab-link" data-tab="portfolio">Наши работы</a></li>
+                    <li><a href="#contacts" class="tab-link" data-tab="contacts">Контакты</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-contact">
+                <a href="tel:+375291234567" class="phone">+375 (29) 123-45-67</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Контент для вкладки Главная -->
+            <div id="main-content" class="tab-content active">
+                <section class="hero">
+                    <div class="hero-content">
+                        <h2>Профессиональные электромонтажные работы в Минске</h2>
+                        <p>Качественный электромонтаж, ремонт и обслуживание электросистем с гарантией 3 года</p>
+                        <div class="hero-features">
+                            <div class="feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Выезд в день обращения</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Опытные электрики</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Честные цены</span>
+                            </div>
+                        </div>
+                        <div class="hero-buttons">
+                            <a href="#calculator" class="tab-link btn btn-large" data-tab="calculator">Рассчитать стоимость</a>
+                            <a href="#contacts" class="tab-link btn btn-large btn-outline" data-tab="contacts">Вызвать электрика</a>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="quick-services">
+                    <h3>Популярные услуги</h3>
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <i class="fas fa-plug"></i>
+                            <h4>Замена розеток</h4>
+                            <p>от 12 руб./шт.</p>
+                        </div>
+                        <div class="service-card">
+                            <i class="fas fa-lightbulb"></i>
+                            <h4>Установка люстры</h4>
+                            <p>от 30 руб./шт.</p>
+                        </div>
+                        <div class="service-card">
+                            <i class="fas fa-wiring"></i>
+                            <h4>Замена проводки</h4>
+                            <p>от 40 руб./м²</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Контент для вкладки Услуги -->
+            <div id="services-content" class="tab-content">
+                <div class="tab-header">
+                    <h2>Наши услуги</h2>
+                    <p>Полный спектр электромонтажных работ</p>
+                </div>
+
+                <!-- Вертикальные вкладки для услуг -->
+                <div class="vertical-tabs">
+                    <div class="vertical-tab-nav">
+                        <button id="electro-wiring" class="vertical-tab-link active" data-vertical-tab="electro-wiring">Монтаж электропроводки</button>
+                        <button id="sockets" class="vertical-tab-link" data-vertical-tab="sockets">Розетки и выключатели</button>
+                        <button id="lighting" class="vertical-tab-link" data-vertical-tab="lighting">Освещение</button>
+                        <button id="shields" class="vertical-tab-link" data-vertical-tab="shields">Электрощиты</button>
+                        <button id="troubleshooting" class="vertical-tab-link" data-vertical-tab="troubleshooting">Устранение неисправностей</button>
+                    </div>
+
+                    <div class="vertical-tab-content">
+                        <!-- Монтаж электропроводки -->
+                        <div id="electro-wiring" class="vertical-tab-pane active">
+                            <h3>Монтаж электропроводки</h3>
+                            <p>Полный комплекс работ по монтажу электропроводки любой сложности:</p>
+                            <ul>
+                                <li>Замена старой электропроводки</li>
+                                <li>Монтаж новой проводки в новостройках</li>
+                                <li>Прокладка кабелей в штробах, гофре, кабель-каналах</li>
+                                <li>Монтаж электропроводки в деревянных домах</li>
+                                <li>Установка заземления</li>
+                            </ul>
+                            <div class="price-example">
+                                <h4>Примерная стоимость:</h4>
+                                <p>от 40 руб./м² за полный монтаж</p>
+                            </div>
+                        </div>
+
+                        <!-- Розетки и выключатели -->
+                        <div id="sockets" class="vertical-tab-pane">
+                            <h3>Розетки и выключатели</h3>
+                            <p>Установка и замена электроустановочных изделий:</p>
+                            <ul>
+                                <li>Установка розеток и выключателей</li>
+                                <li>Перенос розеток и выключателей</li>
+                                <li>Установка TV, интернет, телефонных розеток</li>
+                                <li>Монтаж розеточных блоков</li>
+                                <li>Установка диммеров и smart-выключателей</li>
+                            </ul>
+                            <div class="price-example">
+                                <h4>Примерная стоимость:</h4>
+                                <p>от 12 руб./шт. за установку</p>
+                            </div>
+                        </div>
+
+                        <!-- Освещение -->
+                        <div id="lighting" class="vertical-tab-pane">
+                            <h3>Осветительные системы</h3>
+                            <p>Монтаж всех видов осветительных приборов:</p>
+                            <ul>
+                                <li>Установка люстр и подвесных светильников</li>
+                                <li>Монтаж точечных светильников</li>
+                                <li>Установка бра и настенных светильников</li>
+                                <li>Монтаж светодиодных лент и профилей</li>
+                                <li>Установка уличного освещения</li>
+                            </ul>
+                            <div class="price-example">
+                                <h4>Примерная стоимость:</h4>
+                                <p>от 20 руб./шт. за установку</p>
+                            </div>
+                        </div>
+
+                        <!-- Электрощиты -->
+                        <div id="shields" class="vertical-tab-pane">
+                            <h3>Электрощитовое оборудование</h3>
+                            <p>Сборка и монтаж распределительных щитов:</p>
+                            <ul>
+                                <li>Сборка электрощитов</li>
+                                <li>Установка автоматов, УЗО, дифавтоматов</li>
+                                <li>Монтаж реле напряжения</li>
+                                <li>Установка счетчиков электроэнергии</li>
+                                <li>Модернизация электрощитов</li>
+                            </ul>
+                            <div class="price-example">
+                                <h4>Примерная стоимость:</h4>
+                                <p>от 100 руб. за сборку щита</p>
+                            </div>
+                        </div>
+
+                        <!-- Устранение неисправностей -->
+                        <div id="troubleshooting" class="vertical-tab-pane">
+                            <h3>Устранение неисправностей</h3>
+                            <p>Диагностика и ремонт электропроводки:</p>
+                            <ul>
+                                <li>Поиск и устранение обрывов проводки</li>
+                                <li>Ремонт поврежденных участков</li>
+                                <li>Поиск коротких замыканий</li>
+                                <li>Диагностика неисправностей</li>
+                                <li>Восстановление электропитания</li>
+                            </ul>
+                            <div class="price-example">
+                                <h4>Примерная стоимость:</h4>
+                                <p>от 50 руб. за диагностику</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Контент для вкладки Цены -->
+            <div id="prices-content" class="tab-content">
+                <div class="tab-header">
+                    <h2>Цены на электромонтажные работы</h2>
+                    <p>Прозрачное ценообразование без скрытых платежей</p>
+                </div>
+
+                <!-- Вертикальные вкладки для разных категорий цен -->
+                <div class="vertical-tabs">
+                    <div class="vertical-tab-nav">
+                        <button id="wiring-prices" class="vertical-tab-link active" data-vertical-tab="wiring-prices">Электропроводка</button>
+                        <button id="sockets-prices" class="vertical-tab-link" data-vertical-tab="sockets-prices">Розетки/выключатели</button>
+                        <button id="lighting-prices" class="vertical-tab-link" data-vertical-tab="lighting-prices">Освещение</button>
+                        <button id="shields-prices" class="vertical-tab-link" data-vertical-tab="shields-prices">Электрощиты</button>
+                        <button id="emergency-prices" class="vertical-tab-link" data-vertical-tab="emergency-prices">Срочный выезд</button>
+                    </div>
+
+                    <div class="vertical-tab-content">
+                        <!-- Цены на электропроводку -->
+                        <div id="wiring-prices" class="vertical-tab-pane active">
+                            <h3>Монтаж электропроводки</h3>
+                            <div class="price-table">
+                                <table>
+                                    <tr>
+                                        <td>Штробление стен (кирпич)</td>
+                                        <td>15 руб./м.п.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Штробление стен (бетон)</td>
+                                        <td>25 руб./м.п.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Прокладка кабеля открытым способом</td>
+                                        <td>10 руб./м.п.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Прокладка кабеля в штробе</td>
+                                        <td>12 руб./м.п.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Прокладка кабеля в гофре</td>
+                                        <td>15 руб./м.п.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Монтаж электропроводки под ключ</td>
+                                        <td>от 40 руб./м²</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Цены на розетки и выключатели -->
+                        <div id="sockets-prices" class="vertical-tab-pane">
+                            <h3>Розетки и выключатели</h3>
+                            <div class="price-table">
+                                <table>
+                                    <tr>
+                                        <td>Установка розетки/выключателя</td>
+                                        <td>12 руб./шт.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Установка TV/интернет розетки</td>
+                                        <td>15 руб./шт.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Установка звонка</td>
+                                        <td>20 руб./шт.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Установка терморегулятора</td>
+                                        <td>25 руб./шт.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Перенос розетки/выключателя</td>
+                                        <td>18 руб./шт.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Установка розеточного блока (3 точки)</td>
+                                        <td>40 руб./шт.</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Цены на освещение -->
+                        <div id="lighting-prices" class="vertical-tab-pane">
+                            <h3>Осветительные приборы</h3>
+                            <div class="price-table">
+                                <table>
+                                    <tr>
+                                        <td>Установка люстры</td>
+                                        <td>30 руб./шт.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Установка бра/светильника</td>
+                                        <td>20 руб./шт.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Установка точечного светильника</td>
+                                        <td>15 руб./шт.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Установка светодиодной ленты</td>
+                                        <td>25 руб./м.п.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Установка выключателя проходного</td>
+                                        <td>25 руб./шт.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Монтаж уличного светильника</td>
+                                        <td>40 руб./шт.</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Цены на электрощиты -->
+                        <div id="shields-prices" class="vertical-tab-pane">
+                            <h3>Электрощитовое оборудование</h3>
+                            <div class="price-table">
+                                <table>
+                                    <tr>
+                                        <td>Сборка электрощита (до 12 модулей)</td>
+                                        <td>100 руб.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Сборка электрощита (13-24 модуля)</td>
+                                        <td>150 руб.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Сборка электрощита (25-36 модулей)</td>
+                                        <td>200 руб.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Установка автомата/УЗО</td>
+                                        <td>8 руб./шт.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Установка счетчика электроэнергии</td>
+                                        <td>40 руб.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Монтаж щита на стену</td>
+                                        <td>30 руб.</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Цены на срочный выезд -->
+                        <div id="emergency-prices" class="vertical-tab-pane">
+                            <h3>Срочный выезд и аварийные работы</h3>
+                            <div class="price-table">
+                                <table>
+                                    <tr>
+                                        <td>Выезд electrician (в рабочее время)</td>
+                                        <td>30 руб.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Выезд electrician (вечером после 18:00)</td>
+                                        <td>45 руб.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Выезд electrician (выходные дни)</td>
+                                        <td>60 руб.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Срочный выезд (в течение 2 часов)</td>
+                                        <td>80 руб.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Аварийные работы</td>
+                                        <td>от 70 руб./час</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Диагностика неисправностей</td>
+                                        <td>50 руб.</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="price-notice">
+                    <p>* Окончательная стоимость работ определяется после осмотра объекта мастером. Минимальный выезд - 50 руб.</p>
+                </div>
+            </div>
+
+            <!-- Контент для вкладки Калькулятор -->
+            <div id="calculator-content" class="tab-content">
+                <div class="tab-header">
+                    <h2>Калькулятор стоимости электромонтажных работ</h2>
+                    <p>Рассчитайте приблизительную стоимость услуг для вашего объекта</p>
+                </div>
+                
+                <div class="calculator-container">
+                    <div class="calculator-form">
+                        <div class="form-group">
+                            <label>Тип помещения:</label>
+                            <select id="room-type">
+                                <option value="1">Квартира</option>
+                                <option value="1.2">Частный дом</option>
+                                <option value="1.5">Офис</option>
+                                <option value="1.8">Дача</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Площадь помещения (м²):</label>
+                            <input type="number" id="area" min="20" max="500" value="50">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Дополнительные услуги:</label>
+                            <div class="checkbox-group">
+                                <label>
+                                    <input type="checkbox" name="services" value="500"> Замена электропроводки
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="services" value="300"> Установка розеток и выключателей
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="services" value="200"> Монтаж светильников
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="services" value="400"> Сборка электрощита
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="services" value="350"> Установка люстры
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="services" value="150"> Монтаж TV и интернет кабелей
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Срочность:</label>
+                            <select id="urgency">
+                                <option value="1">Стандартно (3-5 дней)</option>
+                                <option value="1.3">Срочно (1-2 дня)</option>
+                                <option value="1.5">Очень срочно (в день обращения)</option>
+                            </select>
+                        </div>
+                        
+                        <button id="calculate-btn" class="btn btn-large">Рассчитать стоимость</button>
+                    </div>
+                    
+                    <div class="calculator-result">
+                        <h3>Примерная стоимость работ:</h3>
+                        <div class="result-sum" id="result-sum">0 руб.</div>
+                        <p>Точную стоимость сможет назвать мастер после бесплатного выезда и осмотра объекта</p>
+                        <div class="result-details">
+                            <p>В стоимость включены:</p>
+                            <ul>
+                                <li>Работа квалифицированных electricians</li>
+                                <li>Качественные материалы (по желанию клиента)</li>
+                                <li>Гарантия 3 года на все работы</li>
+                            </ul>
+                        </div>
+                        <a href="#contacts" class="tab-link btn" data-tab="contacts">Заказать выезд мастера</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Контент для вкладки Наши работы -->
+            <div id="portfolio-content" class="tab-content">
+                <div class="tab-header">
+                    <h2>Наши работы</h2>
+                    <p>Примеры выполненных электромонтажных работ</p>
+                </div>
+
+                <div class="portfolio-filter">
+                    <button class="filter-btn active" data-filter="all">Все работы</button>
+                    <button class="filter-btn" data-filter="apartment">Квартиры</button>
+                    <button class="filter-btn" data-filter="house">Дома</button>
+                    <button class="filter-btn" data-filter="office">Офисы</button>
+                    <button class="filter-btn" data-filter="shields">Электрощиты</button>
+                </div>
+
+                <div class="portfolio-grid">
+                    <div class="portfolio-item" data-category="apartment">
+                        <img src="https://placehold.co/400x300/3c40c6/ffffff?text=Квартира+1" alt="Электромонтаж в квартире">
+                        <div class="portfolio-info">
+                            <h4>Электромонтаж в 3-комнатной квартире</h4>
+                            <p>Полная замена проводки, установка 45 розеток, монтаж освещения</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item" data-category="house">
+                        <img src="https://placehold.co/400x300/3c40c6/ffffff?text=Дом+1" alt="Электромонтаж в доме">
+                        <div class="portfolio-info">
+                            <h4>Частный дом 150м²</h4>
+                            <p>Монтаж электропроводки, уличное освещение, сборка электрощита</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item" data-category="office">
+                        <img src="https://placehold.co/400x300/3c40c6/ffffff?text=Офис+1" alt="Электромонтаж в офисе">
+                        <div class="portfolio-info">
+                            <h4>Офисное помещение 80м²</h4>
+                            <p>Монтаж офисного освещения, установка розеточных блоков</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item" data-category="shields">
+                        <img src="https://placehold.co/400x300/3c40c6/ffffff?text=Щит+1" alt="Сборка электрощита">
+                        <div class="portfolio-info">
+                            <h4>Электрощит на 24 модуля</h4>
+                            <p>Сборка и установка распределительного щита для квартиры</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item" data-category="apartment">
+                        <img src="https://placehold.co/400x300/3c40c6/ffffff?text=Квартира+2" alt="Электромонтаж в квартире">
+                        <div class="portfolio-info">
+                            <h4>Студия 40м²</h4>
+                            <p>Монтаж электропроводки, установка smart-выключателей</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item" data-category="house">
+                        <img src="https://placehold.co/400x300/3c40c6/ffffff?text=Дом+2" alt="Электромонтаж в доме">
+                        <div class="portfolio-info">
+                            <h4>Коттедж 200м²</h4>
+                            <p>Полный электромонтаж, система заземления, уличное освещение</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Контент для вкладки Контакты -->
+            <div id="contacts-content" class="tab-content">
+                <div class="tab-header">
+                    <h2>Контакты</h2>
+                    <p>Свяжитесь с нами для консультации или заказа услуг</p>
+                </div>
+
+                <div class="contacts-content">
+                    <div class="contact-info">
+                        <h3>Контактная информация</h3>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <a href="tel:+375291234567">+375 (29) 123-45-67</a>
+                                <p>Ежедневно с 8:00 до 22:00</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <a href="mailto:info@electrovolkov.by">info@electrovolkov.by</a>
+                                <p>Ответим в течение дня</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <p>г. Минск, ул. Электрическая, 15</p>
+                                <p>Выезд по всему Минску и области</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <p><strong>Пн-Пт:</strong> 8:00 - 20:00</p>
+                                <p><strong>Сб-Вс:</strong> 9:00 - 18:00</p>
+                            </div>
+                        </div>
+                        <div class="social-links">
+                            <h4>Мы в соцсетях:</h4>
+                            <div class="social-icons">
+                                <a href="#"><i class="fab fa-viber"></i></a>
+                                <a href="#"><i class="fab fa-telegram"></i></a>
+                                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form">
+                        <h3>Заказать выезд electrician</h3>
+                        <form>
+                            <input type="text" placeholder="Ваше имя" required>
+                            <input type="tel" placeholder="Ваш телефон" required>
+                            <select>
+                                <option value="">Выберите услугу</option>
+                                <option value="wiring">Монтаж электропроводки</option>
+                                <option value="sockets">Установка розеток</option>
+                                <option value="lighting">Монтаж освещения</option>
+                                <option value="repair">Ремонт электропроводки</option>
+                                <option value="other">Другая услуга</option>
+                            </select>
+                            <textarea placeholder="Опишите задачу" rows="4"></textarea>
+                            <button type="submit" class="btn btn-large">Заказать выезд</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="map-container">
+                    <div class="map-placeholder">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <p>Карта проезда будет здесь</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="logo-text">
+                            <h3>ИП Волков</h3>
+                            <p>Электромонтажные работы</p>
+                        </div>
+                    </div>
+                    <p>Качественные электромонтажные работы в Минске и области с гарантией 3 года</p>
+                </div>
+                
+                <div class="footer-nav">
+                    <h4>Услуги</h4>
+                    <ul>
+                        <li><a href="#services" class="tab-link" data-tab="services">Электромонтаж</a></li>
+                        <li><a href="#services" class="tab-link" data-tab="services">Установка розеток</a></li>
+                        <li><a href="#services" class="tab-link" data-tab="services">Монтаж светильников</a></li>
+                        <li><a href="#services" class="tab-link" data-tab="services">Сборка электрощитов</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Контакты</h4>
+                    <a href="tel:+375291234567">+375 (29) 123-45-67</a>
+                    <p>г. Минск, ул. Электрическая, 15</p>
+                    <p>Пн-Вс: 8:00 - 22:00</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 ИП Волков. Все права защищены.</p>
+                <p>УНП: 123456789</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
