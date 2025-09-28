@@ -1,32 +1,86 @@
-// Главный скрипт для управления вкладками
+// Главный скрипт для управления сайтом
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Документ загружен, инициализируем вкладки...');
-    
-    // 1. Управление главными горизонтальными вкладками
+    // 1. Загрузка цен из JSON файла
+    function loadPrices() {
+        fetch('data/prices.json')
+            .then(response => response.json())
+            .then(prices => {
+                renderPrices(prices);
+            })
+            .catch(error => {
+                console.error('Ошибка загрузки цен:', error);
+                renderPrices(getFallbackPrices());
+            });
+    }
+
+    // 2. Рендер цен в таблицы
+    function renderPrices(prices) {
+        const priceSections = {
+            'electrical-installation-prices': prices.electrical_installation,
+            'sockets-switches-prices': prices.sockets_switches,
+            'lighting-prices': prices.lighting,
+            'electrical-shields-prices': prices.electrical_shields,
+            'emergency-prices': prices.emergency
+        };
+
+        for (const [sectionId, priceData] of Object.entries(priceSections)) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.innerHTML = generatePriceTable(priceData);
+            }
+        }
+    }
+
+    // 3. Генерация HTML для таблицы цен
+    function generatePriceTable(prices) {
+        return `
+            <table>
+                ${prices.map(item => `
+                    <tr>
+                        <td>${item.name}</td>
+                        <td>${item.price}</td>
+                    </tr>
+                `).join('')}
+            </table>
+        `;
+    }
+
+    // 4. Запасные цены
+    function getFallbackPrices() {
+        return {
+            electrical_installation: [
+                {"name": "Штробление стен (кирпич)", "price": "15 руб./м.п."},
+                {"name": "Штробление стен (бетон)", "price": "25 руб./м.п."}
+            ],
+            sockets_switches: [
+                {"name": "Установка розетки/выключателя", "price": "12 руб./шт."}
+            ],
+            lighting: [
+                {"name": "Установка люстры", "price": "30 руб./шт."}
+            ],
+            electrical_shields: [
+                {"name": "Сборка электрощита", "price": "100 руб."}
+            ],
+            emergency: [
+                {"name": "Выезд electrician", "price": "30 руб."}
+            ]
+        };
+    }
+
+    // 5. Управление главными вкладками
     function initMainTabs() {
         const tabLinks = document.querySelectorAll('.tab-link');
         const tabContents = document.querySelectorAll('.tab-content');
-        
-        console.log('Найдено ссылок вкладок:', tabLinks.length);
-        console.log('Найдено контента вкладок:', tabContents.length);
-        
-        // Функция переключения вкладок
-        function switchMainTab(tabId) {
-            console.log('Переключаем на вкладку:', tabId);
+
+        function switchTab(tabId) {
+            // Скрыть все вкладки
+            tabContents.forEach(content => content.classList.remove('active'));
             
-            // Скрываем весь контент
-            tabContents.forEach(content => {
-                content.classList.remove('active');
-            });
+            // Показать выбранную вкладку
+            const targetTab = document.getElementById(`${tabId}-content`);
+            if (targetTab) targetTab.classList.add('active');
             
-            // Показываем выбранный контент
-            const targetContent = document.getElementById(tabId + '-content');
-            if (targetContent) {
-                targetContent.classList.add('active');
-                console.log('Показан контент:', tabId + '-content');
-            }
-            
-            // Обновляем активные ссылки
+            // Обновить активные ссылки
             tabLinks.forEach(link => {
                 link.classList.remove('active');
                 if (link.getAttribute('data-tab') === tabId) {
@@ -34,173 +88,72 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         }
-        
-        // Вешаем обработчики на ссылки
+
+        // Обработчики кликов
         tabLinks.forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
                 const tabId = this.getAttribute('data-tab');
-                switchMainTab(tabId);
-                
-                // Прокрутка к верху страницы
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
+                switchTab(tabId);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         });
-        
-        // Активируем первую вкладку
-        if (tabLinks.length > 0) {
-            const firstTab = tabLinks[0].getAttribute('data-tab');
-            switchMainTab(firstTab);
-        }
+
+        // Активная вкладка по умолчанию
+        switchTab('main');
     }
-    
-    // 2. Управление вертикальными вкладками
+
+    // 6. Управление вертикальными вкладками
     function initVerticalTabs() {
-        const verticalTabs = document.querySelectorAll('.vertical-tabs');
-        
-        verticalTabs.forEach(verticalTabContainer => {
-            const verticalLinks = verticalTabContainer.querySelectorAll('.vertical-tab-link');
-            const verticalPanes = verticalTabContainer.querySelectorAll('.vertical-tab-pane');
+        const verticalTabLinks = document.querySelectorAll('.vertical-tab-link');
+        const verticalTabPanes = document.querySelectorAll('.vertical-tab-pane');
+
+        function switchVerticalTab(tabId) {
+            // Скрыть все панели
+            verticalTabPanes.forEach(pane => pane.classList.remove('active'));
             
-            function switchVerticalTab(tabId, container) {
-                // Скрываем все панели в этом контейнере
-                verticalPanes.forEach(pane => {
-                    if (pane.closest('.vertical-tabs') === container) {
-                        pane.classList.remove('active');
-                    }
-                });
-                
-                // Показываем выбранную панель
-                const targetPane = document.getElementById(tabId);
-                if (targetPane && targetPane.closest('.vertical-tabs') === container) {
-                    targetPane.classList.add('active');
-                }
-                
-                // Обновляем активные кнопки
-                verticalLinks.forEach(link => {
-                    if (link.closest('.vertical-tabs') === container) {
-                        link.classList.remove('active');
-                        if (link.getAttribute('data-vertical-tab') === tabId) {
-                            link.classList.add('active');
-                        }
-                    }
-                });
-            }
+            // Показать выбранную панель
+            const targetPane = document.getElementById(tabId);
+            if (targetPane) targetPane.classList.add('active');
             
-            // Вешаем обработчики
-            verticalLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    const tabId = this.getAttribute('data-vertical-tab');
-                    const container = this.closest('.vertical-tabs');
-                    switchVerticalTab(tabId, container);
-                });
-            });
-            
-            // Активируем первую вкладку в каждом контейнере
-            if (verticalLinks.length > 0) {
-                const firstTab = verticalLinks[0].getAttribute('data-vertical-tab');
-                switchVerticalTab(firstTab, verticalTabContainer);
-            }
-        });
-    }
-    
-    // 3. Фильтрация портфолио
-    function initPortfolioFilter() {
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const portfolioItems = document.querySelectorAll('.portfolio-item');
-        
-        filterButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const filter = this.getAttribute('data-filter');
-                
-                // Обновляем активную кнопку
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                this.classList.add('active');
-                
-                // Фильтруем элементы
-                portfolioItems.forEach(item => {
-                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            });
-        });
-    }
-    
-    // 4. Калькулятор стоимости
-    function initCalculator() {
-        const calculateBtn = document.getElementById('calculate-btn');
-        
-        if (calculateBtn) {
-            calculateBtn.addEventListener('click', function() {
-                const baseRate = 40;
-                const roomType = parseFloat(document.getElementById('room-type').value) || 1;
-                const area = parseInt(document.getElementById('area').value) || 50;
-                const urgency = parseFloat(document.getElementById('urgency').value) || 1;
-                
-                let additionalServices = 0;
-                document.querySelectorAll('input[name="services"]:checked').forEach(checkbox => {
-                    additionalServices += parseInt(checkbox.value) || 0;
-                });
-                
-                const totalCost = baseRate * area * roomType * urgency + additionalServices;
-                
-                const resultSum = document.getElementById('result-sum');
-                if (resultSum) {
-                    resultSum.textContent = totalCost.toLocaleString('ru-RU') + ' руб.';
+            // Обновить активные кнопки
+            verticalTabLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-vertical-tab') === tabId) {
+                    link.classList.add('active');
                 }
             });
         }
-    }
-    
-    // 5. Плавная прокрутка для обычных якорных ссылок
-    function initSmoothScroll() {
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            // Пропускаем ссылки-вкладки
-            if (anchor.classList.contains('tab-link')) return;
-            
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    const headerHeight = document.querySelector('header').offsetHeight;
-                    const targetPosition = targetElement.offsetTop - headerHeight;
-                    
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
+
+        // Обработчики кликов
+        verticalTabLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-vertical-tab');
+                switchVerticalTab(tabId);
             });
         });
+
+        // Активная вкладка по умолчанию
+        if (verticalTabLinks.length > 0) {
+            switchVerticalTab('electro-wiring');
+        }
     }
-    
-    // Инициализируем все компоненты
+
+    // 7. Инициализация формы
+    function initForm() {
+        const form = document.getElementById('contactForm');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
+                form.reset();
+            });
+        }
+    }
+
+    // Запуск всех функций
+    loadPrices();
     initMainTabs();
     initVerticalTabs();
-    initPortfolioFilter();
-    initCalculator();
-    initSmoothScroll();
-    
-    console.log('Все компоненты инициализированы');
-});
-
-// Простой обработчик для hash URL
-window.addEventListener('hashchange', function() {
-    const hash = window.location.hash.substring(1);
-    if (hash) {
-        const tabLink = document.querySelector(`.tab-link[data-tab="${hash}"]`);
-        if (tabLink) {
-            tabLink.click();
-        }
-    }
+    initForm();
 });
