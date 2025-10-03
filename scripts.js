@@ -1,21 +1,29 @@
-// Главный скрипт для управления сайтом
+// Простой и надежный скрипт для вкладок
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('Сайт загружен!');
+    
     // 1. Загрузка цен из JSON файла
     function loadPrices() {
         fetch('data/prices.json')
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Ошибка загрузки файла');
+                }
+                return response.json();
+            })
             .then(prices => {
+                console.log('Цены загружены:', prices);
                 renderPrices(prices);
             })
             .catch(error => {
                 console.error('Ошибка загрузки цен:', error);
+                console.log('Используем резервные цены');
                 renderPrices(getFallbackPrices());
             });
     }
 
-    // 2. Рендер цен в таблицы
     function renderPrices(prices) {
-        const priceSections = {
+        const sections = {
             'electrical-installation-prices': prices.electrical_installation,
             'sockets-switches-prices': prices.sockets_switches,
             'lighting-prices': prices.lighting,
@@ -23,67 +31,83 @@ document.addEventListener('DOMContentLoaded', function() {
             'emergency-prices': prices.emergency
         };
 
-        for (const [sectionId, priceData] of Object.entries(priceSections)) {
+        for (const [sectionId, priceData] of Object.entries(sections)) {
             const section = document.getElementById(sectionId);
             if (section) {
-                section.innerHTML = generatePriceTable(priceData);
+                let html = '';
+                priceData.forEach(item => {
+                    html += `
+                        <tr>
+                            <td>${item.name}</td>
+                            <td class="text-end fw-bold text-primary">${item.price}</td>
+                        </tr>
+                    `;
+                });
+                section.innerHTML = html;
+                console.log(`Цены загружены в секцию: ${sectionId}`);
+            } else {
+                console.warn(`Секция не найдена: ${sectionId}`);
             }
         }
     }
 
-    // 3. Генерация HTML для таблицы цен
-    function generatePriceTable(prices) {
-        return `
-            <table>
-                ${prices.map(item => `
-                    <tr>
-                        <td>${item.name}</td>
-                        <td>${item.price}</td>
-                    </tr>
-                `).join('')}
-            </table>
-        `;
-    }
-
-    // 4. Запасные цены
     function getFallbackPrices() {
         return {
             electrical_installation: [
                 {"name": "Штробление стен (кирпич)", "price": "15 руб./м.п."},
-                {"name": "Штробление стен (бетон)", "price": "25 руб./м.п."}
+                {"name": "Штробление стен (бетон)", "price": "25 руб./м.п."},
+                {"name": "Прокладка кабеля открытым способом", "price": "10 руб./м.п."}
             ],
             sockets_switches: [
-                {"name": "Установка розетки/выключателя", "price": "12 руб./шт."}
+                {"name": "Установка розетки/выключателя", "price": "12 руб./шт."},
+                {"name": "Установка TV/интернет розетки", "price": "15 руб./шт."}
             ],
             lighting: [
-                {"name": "Установка люстры", "price": "30 руб./шт."}
+                {"name": "Установка люстры", "price": "30 руб./шт."},
+                {"name": "Установка бра/светильника", "price": "20 руб./шт."}
             ],
             electrical_shields: [
-                {"name": "Сборка электрощита", "price": "100 руб."}
+                {"name": "Сборка электрощита", "price": "100 руб."},
+                {"name": "Установка автомата/УЗО", "price": "8 руб./шт."}
             ],
             emergency: [
-                {"name": "Выезд electrician", "price": "30 руб."}
+                {"name": "Выезд electrician", "price": "30 руб."},
+                {"name": "Диагностика неисправностей", "price": "50 руб."}
             ]
         };
     }
 
-    // 5. Управление главными вкладками
+    // 2. Простой переключатель главных вкладок
     function initMainTabs() {
         const tabLinks = document.querySelectorAll('.tab-link');
         const tabContents = document.querySelectorAll('.tab-content');
 
-        function switchTab(tabId) {
+        console.log('Найдено ссылок вкладок:', tabLinks.length);
+        console.log('Найдено контента вкладок:', tabContents.length);
+
+        function showTab(tabName) {
+            console.log('Переключаем на вкладку:', tabName);
+            
             // Скрыть все вкладки
-            tabContents.forEach(content => content.classList.remove('active'));
+            tabContents.forEach(tab => {
+                tab.style.display = 'none';
+                tab.classList.remove('active');
+            });
             
             // Показать выбранную вкладку
-            const targetTab = document.getElementById(`${tabId}-content`);
-            if (targetTab) targetTab.classList.add('active');
+            const targetTab = document.getElementById(tabName + '-content');
+            if (targetTab) {
+                targetTab.style.display = 'block';
+                targetTab.classList.add('active');
+                console.log('Показана вкладка:', tabName + '-content');
+            } else {
+                console.error('Вкладка не найдена:', tabName + '-content');
+            }
             
             // Обновить активные ссылки
             tabLinks.forEach(link => {
                 link.classList.remove('active');
-                if (link.getAttribute('data-tab') === tabId) {
+                if (link.getAttribute('data-tab') === tabName) {
                     link.classList.add('active');
                 }
             });
@@ -93,53 +117,17 @@ document.addEventListener('DOMContentLoaded', function() {
         tabLinks.forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
-                const tabId = this.getAttribute('data-tab');
-                switchTab(tabId);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                const tabName = this.getAttribute('data-tab');
+                showTab(tabName);
+                window.scrollTo(0, 0);
             });
         });
 
-        // Активная вкладка по умолчанию
-        switchTab('main');
+        // Показать первую вкладку
+        showTab('main');
     }
 
-    // 6. Управление вертикальными вкладками
-    function initVerticalTabs() {
-        const verticalTabLinks = document.querySelectorAll('.vertical-tab-link');
-        const verticalTabPanes = document.querySelectorAll('.vertical-tab-pane');
-
-        function switchVerticalTab(tabId) {
-            // Скрыть все панели
-            verticalTabPanes.forEach(pane => pane.classList.remove('active'));
-            
-            // Показать выбранную панель
-            const targetPane = document.getElementById(tabId);
-            if (targetPane) targetPane.classList.add('active');
-            
-            // Обновить активные кнопки
-            verticalTabLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('data-vertical-tab') === tabId) {
-                    link.classList.add('active');
-                }
-            });
-        }
-
-        // Обработчики кликов
-        verticalTabLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                const tabId = this.getAttribute('data-vertical-tab');
-                switchVerticalTab(tabId);
-            });
-        });
-
-        // Активная вкладка по умолчанию
-        if (verticalTabLinks.length > 0) {
-            switchVerticalTab('electro-wiring');
-        }
-    }
-
-    // 7. Инициализация формы
+    // 3. Форма обратной связи
     function initForm() {
         const form = document.getElementById('contactForm');
         if (form) {
@@ -154,6 +142,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Запуск всех функций
     loadPrices();
     initMainTabs();
-    initVerticalTabs();
     initForm();
-});
+    
+    console.log('Все функции инициализированы');
+}
+
+)
+;

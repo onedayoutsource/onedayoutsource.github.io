@@ -3,15 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ИП Волков - Электромонтажные работы в Минске</title>
+    <title>ИП Тутин Д.Ю. - Электромонтажные работы в Лунинце и районе</title>
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <!-- Наши стили -->
-    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #3c40c6;
+            --secondary-color: #ffa801;
+            --dark-color: #1e272e;
+            --light-color: #f7f7f7;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            padding-top: 80px;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), #575fcf);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: rgba(255,255,255,0.1);
+            transform: rotate(30deg);
+        }
+        
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .service-content {
+            padding: 20px;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .nav-pills .nav-link {
+            margin-bottom: 10px;
+            border-radius: 8px;
+            padding: 12px 15px;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        .nav-pills .nav-link.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .portfolio-item {
+            transition: all 0.3s ease;
+        }
+        
+        footer {
+            background: var(--dark-color);
+        }
+        
+        .social-links .btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .contact-card {
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .fixed-top {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-warning {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            color: #333;
+        }
+        
+        .text-primary {
+            color: var(--primary-color) !important;
+        }
+        
+        .bg-primary {
+            background-color: var(--primary-color) !important;
+        }
+        
+        .certificate-img {
+            max-height: 600px;
+            object-fit: contain;
+        }
+        
+        .work-image {
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .price-category {
+            margin-bottom: 2rem;
+        }
+        
+        .price-table {
+            font-size: 0.9rem;
+        }
+        
+        .price-table th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .loading-prices {
+            text-align: center;
+            padding: 2rem;
+        }
+    </style>
 </head>
 <body>
     <!-- Шапка сайта -->
@@ -25,7 +181,7 @@
                             <i class="fas fa-bolt"></i>
                         </div>
                         <div class="logo-text">
-                            <h1 class="h5 mb-0">ИП Волков</h1>
+                            <h1 class="h5 mb-0">ИП Тутин Д.Ю.</h1>
                             <small class="text-muted">Электромонтажные работы</small>
                         </div>
                     </a>
@@ -48,6 +204,12 @@
                                 <a class="nav-link tab-link" href="#prices" data-tab="prices">Цены</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link tab-link" href="#portfolio" data-tab="portfolio">Наши работы</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link tab-link" href="#certificate" data-tab="certificate">Свидетельство</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link tab-link" href="#contacts" data-tab="contacts">Контакты</a>
                             </li>
                         </ul>
@@ -67,26 +229,22 @@
     <!-- Основной контент -->
     <main class="main-content mt-5 pt-4">
         <div class="container">
+            
             <!-- Главная -->
             <div id="main-content" class="tab-content active">
                 <!-- Герой секция -->
                 <section class="hero bg-primary text-white rounded-3 p-4 p-md-5 mb-4">
                     <div class="row align-items-center">
                         <div class="col-lg-8">
-                            <h1 class="display-5 fw-bold mb-3">Профессиональные электромонтажные работы в Минске</h1>
-                            <p class="lead mb-4">Качественный электромонтаж, ремонт и обслуживание электросистем с гарантией 3 года</p>
+                            <h1 class="display-5 fw-bold mb-3">Профессиональные электромонтажные работы в Лунинце и районе</h1>
+                            <p class="lead mb-4">Качественный электромонтаж, ремонт и обслуживание электросистем. Работа по договору. Гибкий ценовой подход, чистое и аккуратное выполнение работ.</p>
                             
                             <div class="row g-3 mb-4">
+                                
                                 <div class="col-md-4">
                                     <div class="d-flex align-items-center">
                                         <i class="fas fa-check-circle text-warning me-2"></i>
-                                        <span>Выезд в день обращения</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="d-flex align-items-center">
-                                        <i class="fas fa-check-circle text-warning me-2"></i>
-                                        <span>Опытные электрики</span>
+                                        <span>Работа по договору</span>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -99,7 +257,54 @@
                             
                             <div class="d-flex flex-column flex-sm-row gap-3">
                                 <a href="#prices" class="tab-link btn btn-warning btn-lg px-4" data-tab="prices">Посмотреть цены</a>
-                                <a href="#contacts" class="tab-link btn btn-outline-light btn-lg px-4" data-tab="contacts">Вызвать электрика</a>
+                                <a href="#contacts" class="tab-link btn btn-outline-light btn-lg px-4" data-tab="contacts">Связаться с нами</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 d-none d-lg-block">
+                            <div class="text-center">
+                                <i class="fas fa-bolt fa-10x text-warning opacity-25"></i>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Обо мне -->
+                <section class="about mb-5">
+                    <div class="row align-items-center">
+                        <div class="col-lg-8">
+                            <h2 class="mb-4">Обо мне</h2>
+                            <p class="lead mb-4">Меня зовут Тутин Дмитрий Юрьевич, я индивидуальный предприниматель, специализирующийся на электромонтажных работах в Лунинце и Лунинецком районе.</p>
+                            <p class="mb-4">Предоставляю полный спектр услуг: от замены розеток до полного монтажа электропроводки в жилых домах и хозяйственных постройках. Работаю с различными типами стен: кирпичными, газосиликатными, бетонными и деревянными.</p>
+                            
+                            <div class="row g-4">
+                                
+                                <div class="col-md-4">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-file-contract text-primary me-3 fa-2x"></i>
+                                        <div>
+                                            <h5 class="mb-1">Работа по договору</h5>
+                                            <small class="text-muted">Официальное оформление</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-tools text-primary me-3 fa-2x"></i>
+                                        <div>
+                                            <h5 class="mb-1">Аккуратное выполнение</h5>
+                                            <small class="text-muted">Чистая работа</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 text-center">
+                            <div class="position-relative">
+                                <div class="bg-light rounded-3 shadow p-5">
+                                    <i class="fas fa-user-tie text-primary fa-6x mb-3"></i>
+                                    <h5 class="mt-3">Тутин Дмитрий Юрьевич</h5>
+                                    <p class="text-muted">Индивидуальный предприниматель</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -112,9 +317,27 @@
                         <div class="col-md-6 col-lg-3">
                             <div class="card h-100 text-center border-0 shadow-sm">
                                 <div class="card-body">
+                                    <i class="fas fa-hammer text-primary fa-3x mb-3"></i>
+                                    <h5 class="card-title">Подготовительные работы</h5>
+                                    <p class="card-text">Штробление, сверление отверстий, устройство ниш</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="card h-100 text-center border-0 shadow-sm">
+                                <div class="card-body">
+                                    <i class="fas fa-bolt text-primary fa-3x mb-3"></i>
+                                    <h5 class="card-title">Прокладка кабелей</h5>
+                                    <p class="card-text">Монтаж кабелей, труб, гофры и кабель-каналов</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="card h-100 text-center border-0 shadow-sm">
+                                <div class="card-body">
                                     <i class="fas fa-plug text-primary fa-3x mb-3"></i>
-                                    <h5 class="card-title">Замена розеток</h5>
-                                    <p class="card-text text-primary fw-bold">от 12 руб./шт.</p>
+                                    <h5 class="card-title">Электрооборудование</h5>
+                                    <p class="card-text">Розетки, выключатели, распределительные коробки</p>
                                 </div>
                             </div>
                         </div>
@@ -122,26 +345,8 @@
                             <div class="card h-100 text-center border-0 shadow-sm">
                                 <div class="card-body">
                                     <i class="fas fa-lightbulb text-primary fa-3x mb-3"></i>
-                                    <h5 class="card-title">Установка люстры</h5>
-                                    <p class="card-text text-primary fw-bold">от 30 руб./шт.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <div class="card h-100 text-center border-0 shadow-sm">
-                                <div class="card-body">
-                                    <i class="fas fa-wiring text-primary fa-3x mb-3"></i>
-                                    <h5 class="card-title">Замена проводки</h5>
-                                    <p class="card-text text-primary fw-bold">от 40 руб./м²</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <div class="card h-100 text-center border-0 shadow-sm">
-                                <div class="card-body">
-                                    <i class="fas fa-tachometer-alt text-primary fa-3x mb-3"></i>
-                                    <h5 class="card-title">Сборка электрощита</h5>
-                                    <p class="card-text text-primary fw-bold">от 100 руб.</p>
+                                    <h5 class="card-title">Освещение</h5>
+                                    <p class="card-text">Установка и подключение светильников всех типов</p>
                                 </div>
                             </div>
                         </div>
@@ -153,65 +358,43 @@
             <div id="services-content" class="tab-content">
                 <div class="text-center mb-5">
                     <h2>Наши услуги</h2>
-                    <p class="lead text-muted">Полный спектр электромонтажных работ</p>
+                    <p class="lead text-muted">Полный спектр электромонтажных работ в Лунинце и районе</p>
                 </div>
 
-                <!-- Вертикальные вкладки для услуг -->
                 <div class="row">
-                    <div class="col-lg-3 mb-4">
-                        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist">
-                            <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#electro-wiring" type="button">
-                                Монтаж электропроводки
-                            </button>
-                            <button class="nav-link" data-bs-toggle="pill" data-bs-target="#sockets" type="button">
-                                Розетки и выключатели
-                            </button>
-                            <button class="nav-link" data-bs-toggle="pill" data-bs-target="#lighting" type="button">
-                                Освещение
-                            </button>
-                            <button class="nav-link" data-bs-toggle="pill" data-bs-target="#shields" type="button">
-                                Электрощиты
-                            </button>
-                            <button class="nav-link" data-bs-toggle="pill" data-bs-target="#troubleshooting" type="button">
-                                Устранение неисправностей
-                            </button>
-                        </div>
-                    </div>
-                    <div class="col-lg-9">
-                        <div class="tab-content" id="v-pills-tabContent">
-                            <div class="tab-pane fade show active" id="electro-wiring">
-                                <h3>Монтаж электропроводки</h3>
-                                <p>Полный комплекс работ по монтажу электропроводки любой сложности:</p>
-                                <ul class="list-unstyled">
-                                    <li><i class="fas fa-check text-success me-2"></i>Замена старой электропроводки</li>
-                                    <li><i class="fas fa-check text-success me-2"></i>Монтаж новой проводки в новостройках</li>
-                                    <li><i class="fas fa-check text-success me-2"></i>Прокладка кабелей в штробах, гофре, кабель-каналах</li>
-                                    <li><i class="fas fa-check text-success me-2"></i>Монтаж электропроводки в деревянных домах</li>
-                                    <li><i class="fas fa-check text-success me-2"></i>Установка заземления</li>
-                                </ul>
-                                <div class="alert alert-primary mt-4">
-                                    <h5 class="alert-heading">Примерная стоимость:</h5>
-                                    <p class="mb-0 fw-bold">от 40 руб./м² за полный монтаж</p>
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title mb-4">Электромонтажные работы</h3>
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h5>Основные услуги:</h5>
+                                        <ul class="list-unstyled">
+                                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Установка и ремонт электрощитков</li>
+                                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Установка либо перенос выключателей, розеток и светильников</li>
+                                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Подключение духовых шкафов, варочных панелей, стиральных машин и другой бытовой техники</li>
+                                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Прокладка кабелей и электропроводок по кирпичным, газосиликатным, бетонным и деревянным стенам, по потолку и в полу</li>
+                                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Установка либо замена дифференциального автоматического выключателя, УЗО, автоматического выключателя в электрощитке</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h5>Наши преимущества:</h5>
+                                        <ul class="list-unstyled">
+                                            <li class="mb-2"><i class="fas fa-star text-warning me-2"></i>Гибкий ценовой подход за работу</li>
+                                            <li class="mb-2"><i class="fas fa-star text-warning me-2"></i>Чистое и аккуратно выполнение своей работы</li>
+                                            <li class="mb-2"><i class="fas fa-star text-warning me-2"></i>Работа по договору</li>
+                                            <li class="mb-2"><i class="fas fa-star text-warning me-2"></i>Выезд на срочные заявки на дом/квартиру</li>
+                                            <li class="mb-2"><i class="fas fa-star text-warning me-2"></i>Опыт работы с различными материалами стен</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-4 p-3 bg-light rounded">
+                                    <h5 class="mb-3">Область работы:</h5>
+                                    <p class="mb-0">Лунинец и Лунинецкий район, Брестская область</p>
                                 </div>
                             </div>
-
-                            <div class="tab-pane fade" id="sockets">
-                                <h3>Розетки и выключатели</h3>
-                                <p>Установка и замена электроустановочных изделий:</p>
-                                <ul class="list-unstyled">
-                                    <li><i class="fas fa-check text-success me-2"></i>Установка розеток и выключателей</li>
-                                    <li><i class="fas fa-check text-success me-2"></i>Перенос розеток и выключателей</li>
-                                    <li><i class="fas fa-check text-success me-2"></i>Установка TV, интернет, телефонных розеток</li>
-                                    <li><i class="fas fa-check text-success me-2"></i>Монтаж розеточных блоков</li>
-                                    <li><i class="fas fa-check text-success me-2"></i>Установка диммеров и smart-выключателей</li>
-                                </ul>
-                                <div class="alert alert-primary mt-4">
-                                    <h5 class="alert-heading">Примерная стоимость:</h5>
-                                    <p class="mb-0 fw-bold">от 12 руб./шт. за установку</p>
-                                </div>
-                            </div>
-
-                            <!-- Добавьте остальные вкладки по аналогии -->
                         </div>
                     </div>
                 </div>
@@ -221,45 +404,140 @@
             <div id="prices-content" class="tab-content">
                 <div class="text-center mb-5">
                     <h2>Цены на электромонтажные работы</h2>
-                    <p class="lead text-muted">Актуальные расценки на все виды электромонтажных работ</p>
+                    <p class="lead text-muted">Прозрачные и честные расценки на все виды электромонтажных работ</p>
                 </div>
 
-                <div class="row g-4">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header bg-primary text-white">
-                                <h4 class="mb-0"><i class="fas fa-wiring me-2"></i>Монтаж электропроводки</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-striped" id="electrical-installation-prices">
-                                        <!-- Цены загрузятся через JS -->
-                                    </table>
-                                </div>
-                            </div>
+                <div id="prices-container">
+                    <div class="loading-prices">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Загрузка цен...</span>
                         </div>
+                        <p class="mt-3">Загружаем актуальные цены...</p>
                     </div>
-
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header bg-primary text-white">
-                                <h4 class="mb-0"><i class="fas fa-plug me-2"></i>Розетки и выключатели</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-striped" id="sockets-switches-prices">
-                                        <!-- Цены загрузятся через JS -->
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Добавьте остальные категории цен по аналогии -->
                 </div>
 
                 <div class="alert alert-info mt-4 text-center">
-                    <p class="mb-0">* Окончательная стоимость работ определяется после осмотра объекта мастером. Минимальный выезд - 50 руб.</p>
+                    <p class="mb-0">* Окончательная стоимость работ определяется после осмотра объекта. Возможен гибкий ценовой подход.</p>
+                </div>
+            </div>
+
+            <!-- Наши работы -->
+            <div id="portfolio-content" class="tab-content">
+                <div class="text-center mb-5">
+                    <h2>Наши работы</h2>
+                    <p class="lead text-muted">Примеры выполненных электромонтажных работ</p>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100">
+                            <img src="изображение_viber_2025-09-18_06-33-26-194.jpg" class="card-img-top work-image" alt="Электрощитовое оборудование">
+                            <div class="card-body">
+                                <h5 class="card-title">Электрощитовое оборудование</h5>
+                                <p class="card-text">Профессиональный монтаж и подключение электрощитов</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100">
+                            <img src="изображение_viber_2025-09-18_06-33-26-879.jpg" class="card-img-top work-image" alt="Автоматические выключатели">
+                            <div class="card-body">
+                                <h5 class="card-title">Автоматические выключатели</h5>
+                                <p class="card-text">Установка и подключение автоматов защиты</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100">
+                            <img src="изображение_viber_2025-09-18_06-35-23-021.jpg" class="card-img-top work-image" alt="Электромонтажные работы">
+                            <div class="card-body">
+                                <h5 class="card-title">Электромонтажные работы</h5>
+                                <p class="card-text">Прокладка кабелей и монтаж электропроводки</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100">
+                            <img src="изображение_viber_2025-09-18_06-36-26-784.jpg" class="card-img-top work-image" alt="Электрооборудование">
+                            <div class="card-body">
+                                <h5 class="card-title">Электрооборудование</h5>
+                                <p class="card-text">Монтаж и подключение электроустановочных изделий</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100">
+                            <img src="изображение_viber_2025-09-18_06-38-29-766.jpg" class="card-img-top work-image" alt="Слаботочные системы">
+                            <div class="card-body">
+                                <h5 class="card-title">Слаботочные системы</h5>
+                                <p class="card-text">Прокладка кабелей связи и слаботочных сетей</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100">
+                            <img src="изображение_viber_2025-09-21_11-48-00-118.jpg" class="card-img-top work-image" alt="Монтаж освещения">
+                            <div class="card-body">
+                                <h5 class="card-title">Монтаж освещения</h5>
+                                <p class="card-text">Установка и подключение осветительных приборов</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Свидетельство -->
+            <div id="certificate-content" class="tab-content">
+                <div class="text-center mb-5">
+                    <h2>Свидетельство о государственной регистрации</h2>
+                    <p class="lead text-muted">ИП Тутин Дмитрий Юрьевич</p>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="certificate-info">
+                                            <h4 class="text-primary mb-4">СВИДЕТЕЛЬСТВО</h4>
+                                            <p class="mb-1"><strong>о государственной регистрации индивидуального предпринимателя</strong></p>
+                                            
+                                            <div class="mt-4">
+                                                <p class="mb-2"><strong>Регистрирующий орган:</strong></p>
+                                                <p class="mb-3">Лунинецкий райисполком</p>
+                                                
+                                                <p class="mb-2"><strong>Дата регистрации:</strong></p>
+                                                <p class="mb-3">5 декабря 2024 г.</p>
+                                                
+                                                <p class="mb-2"><strong>Запись внесена в:</strong></p>
+                                                <p class="mb-3">Единый государственный регистр юридических лиц и индивидуальных предпринимателей</p>
+                                                
+                                                <p class="mb-2"><strong>ФИО предпринимателя:</strong></p>
+                                                <p class="mb-3">Тутин Дмитрий Юрьевич</p>
+                                                
+                                                <p class="mb-2"><strong>Адрес:</strong></p>
+                                                <p class="mb-3">Брестская обл., Лунинецкий район, г.Лунинец, ул.Николая Юстиновича, 1</p>
+                                                
+                                                <p class="mb-2"><strong>Регистрационный номер:</strong></p>
+                                                <p class="mb-3">291846077</p>
+                                            </div>
+                                            
+                                            <div class="mt-4 border-top pt-3">
+                                                <p class="mb-0"><strong>Главный специалист отдела экономики Лунинецкого райисполкома</strong></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="certificate-image text-center">
+                                            <img src="Свидетельство ИП.jpg" alt="Свидетельство о государственной регистрации ИП Тутин Д.Ю." class="img-fluid rounded shadow certificate-img">
+                                            <p class="text-muted mt-3">Свидетельство о государственной регистрации индивидуального предпринимателя</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -271,64 +549,69 @@
                 </div>
 
                 <div class="row g-4">
-                    <div class="col-lg-6">
-                        <div class="card h-100">
+                    <div class="col-lg-8 mx-auto">
+                        <div class="card contact-card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">Контактная информация</h4>
+                                <h4 class="card-title mb-4 text-center">Контактная информация</h4>
                                 
-                                <div class="d-flex align-items-start mb-3">
-                                    <i class="fas fa-phone text-primary me-3 mt-1"></i>
+                                <div class="d-flex align-items-start mb-4">
+                                    <i class="fas fa-phone text-primary me-3 mt-1 fa-lg"></i>
                                     <div>
-                                        <a href="tel:+375291234567" class="h5 text-decoration-none">+375 (29) 123-45-67</a>
+                                        <a href="tel:+375291234567" class="h4 text-decoration-none">+375 (29) 123-45-67</a>
                                         <p class="text-muted mb-0">Ежедневно с 8:00 до 22:00</p>
                                     </div>
                                 </div>
 
-                                <div class="d-flex align-items-start mb-3">
-                                    <i class="fas fa-envelope text-primary me-3 mt-1"></i>
+                                <div class="d-flex align-items-start mb-4">
+                                    <i class="fas fa-user text-primary me-3 mt-1 fa-lg"></i>
                                     <div>
-                                        <a href="mailto:info@electrovolkov.by" class="h5 text-decoration-none">info@electrovolkov.by</a>
-                                        <p class="text-muted mb-0">Ответим в течение дня</p>
+                                        <p class="h5 mb-1">Тутин Дмитрий Юрьевич</p>
+                                        <p class="text-muted mb-0">Индивидуальный предприниматель</p>
+                                    </div>
+                                </div>
+
+                                
+
+                                <div class="d-flex align-items-start mb-4">
+                                    <i class="fas fa-id-card text-primary me-3 mt-1 fa-lg"></i>
+                                    <div>
+                                        <p class="h5 mb-1">Регистрационный номер:</p>
+                                        <p class="text-muted mb-0">291846077</p>
                                     </div>
                                 </div>
 
                                 <div class="d-flex align-items-start mb-4">
-                                    <i class="fas fa-map-marker-alt text-primary me-3 mt-1"></i>
+                                    <i class="fas fa-clock text-primary me-3 mt-1 fa-lg"></i>
                                     <div>
-                                        <p class="h5 mb-1">г. Минск, ул. Электрическая, 15</p>
-                                        <p class="text-muted mb-0">Выезд по всему Минску и области</p>
+                                        <p class="h5 mb-1">График работы:</p>
+                                        <p class="text-muted mb-0"><strong>Пн-Вс:</strong> 8:00 - 22:00</p>
+                                        <p class="text-muted mb-0">Выезд на срочные заявки</p>
                                     </div>
                                 </div>
 
-                                <div class="social-links">
-                                    <h5 class="mb-3">Мы в соцсетях:</h5>
-                                    <div class="d-flex gap-3">
-                                        <a href="#" class="btn btn-primary btn-sm"><i class="fab fa-viber"></i></a>
-                                        <a href="#" class="btn btn-primary btn-sm"><i class="fab fa-telegram"></i></a>
-                                        <a href="#" class="btn btn-primary btn-sm"><i class="fab fa-whatsapp"></i></a>
+                                <div class="social-links text-center mt-5">
+                                    <h5 class="mb-3">Свяжитесь с нами:</h5>
+                                    <div class="d-flex justify-content-center gap-3">
+                                        <a href="tel:+375295573690" class="btn btn-primary btn-lg">
+                                            <i class="fas fa-phone"></i> 
+                                        </a>
+                                        <a href="https://t.me/pochti_putin" class="btn btn-primary btn-lg">
+                                            <i class="fab fa-telegram"></i> 
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title mb-4">Заказать выезд electrician</h4>
-                                <form id="contactForm">
-                                    <div class="mb-3">
-                                        <input type="text" class="form-control" placeholder="Ваше имя" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <input type="tel" class="form-control" placeholder="Ваш телефон" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <textarea class="form-control" placeholder="Опишите задачу" rows="4"></textarea>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary btn-lg w-100">Заказать выезд</button>
-                                </form>
-                            </div>
+                <div class="map-container mt-5">
+                    <div class="card">
+                        <div class="card-body text-center py-5">
+                            <i class="fas fa-map-marked-alt text-primary fa-4x mb-3"></i>
+                            <h4>Область работы</h4>
+                            <p class="text-muted">г. Лунинец и Лунинецкий район, Брестская область</p>
+                            <p class="text-muted">Выезд электрика по всему Лунинецкому району</p>
                         </div>
                     </div>
                 </div>
@@ -346,37 +629,34 @@
                             <i class="fas fa-bolt"></i>
                         </div>
                         <div>
-                            <h5 class="mb-0">ИП Волков</h5>
-                            <small class="text-muted">Электромонтажные работы</small>
+                            <h5 class="mb-0">ИП Тутин Д.Ю.</h5>
+                            <small class="">Электромонтажные работы</small>
                         </div>
                     </div>
-                    <p class="text-muted">Качественные электромонтажные работы в Минске и области с гарантией 3 года</p>
+                    <p>Качественные электромонтажные работы в Лунинце и Лунинецком районе. Работа по договору, гибкий ценовой подход, чистое и аккуратное выполнение работ.</p>
                 </div>
                 
-                <div class="col-lg-4">
-                    <h5 class="mb-3">Услуги</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#services" class="text-muted text-decoration-none tab-link" data-tab="services">Электромонтаж</a></li>
-                        <li><a href="#services" class="text-muted text-decoration-none tab-link" data-tab="services">Установка розеток</a></li>
-                        <li><a href="#services" class="text-muted text-decoration-none tab-link" data-tab="services">Монтаж светильников</a></li>
-                    </ul>
-                </div>
+                
                 
                 <div class="col-lg-4">
                     <h5 class="mb-3">Контакты</h5>
-                    <a href="tel:+375291234567" class="text-white text-decoration-none d-block mb-2">+375 (29) 123-45-67</a>
-                    <p class="text-muted mb-2">г. Минск, ул. Электрическая, 15</p>
-                    <p class="text-muted mb-0">Пн-Вс: 8:00 - 22:00</p>
+                    <a href="tel:+375291234567" class="text-white text-decoration-none h5 d-block mb-2">+375 (29) 123-45-67</a>
+                    <p class="mb-0">Пн-Вс: 8:00 - 22:00</p>
+                    
+                    <div class="mt-3">
+                        <small class="">ИП Тутин Дмитрий Юрьевич</small><br>
+                        <small class="">УНП: 291846077</small>
+                    </div>
                 </div>
             </div>
             
             <hr class="my-4">
             <div class="row align-items-center">
                 <div class="col-md-6">
-                    <p class="mb-0">&copy; 2023 ИП Волков. Все права защищены.</p>
+                    <p class="mb-0">&copy; 2024 ИП Тутин Д.Ю. Все права защищены.</p>
                 </div>
                 <div class="col-md-6 text-md-end">
-                    <p class="mb-0 text-muted">УНП: 123456789</p>
+                    <p class="mb-0">Профессиональные электромонтажные работы в Лунинце и районе</p>
                 </div>
             </div>
         </div>
@@ -385,7 +665,469 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- Наш скрипт -->
-    <script src="script.js"></script>
+    <!-- Наш JavaScript -->
+    <script>
+        const pricesData = {
+  "services": {
+    "preparatory_works": {
+      "name": "Подготовительные работы",
+      "icon": "hammer",
+      "description": "Работы по подготовке поверхностей для монтажа электропроводки",
+      "services": [
+        {
+          "name": "Устройство борозд (штраб) до 25х25 мм в бетонных стенах",
+          "price": "от 4 руб./м.п.",
+          "priceValue": 4,
+          "unit": "mp"
+        },
+        {
+          "name": "Устройство борозд (штраб) до 25х25 мм в других, не бетонных стенах",
+          "price": "от 2 руб./м.п.",
+          "priceValue": 2,
+          "unit": "mp"
+        },
+        {
+          "name": "Изготовление гнезд Ø68-82 мм, для подрозетников, в бетонных стенах",
+          "price": "от 7 руб./шт.",
+          "priceValue": 7,
+          "unit": "item"
+        },
+        {
+          "name": "Изготовление гнезд Ø68-82 мм, для подрозетников, в других, не бетонных стенах",
+          "price": "от 3 руб./шт.",
+          "priceValue": 3,
+          "unit": "item"
+        },
+        {
+          "name": "Устройство ниш, под распределительные коробки, в бетонных стенах",
+          "price": "от 15 руб./шт.",
+          "priceValue": 15,
+          "unit": "item"
+        },
+        {
+          "name": "Устройство ниш, под распределительные коробки, в других, не бетонных стенах",
+          "price": "от 6 руб./шт.",
+          "priceValue": 6,
+          "unit": "item"
+        },
+        {
+          "name": "Сверление сквозных отверстий до Ø32 мм, в бетонных стенах",
+          "price": "от 0,3 руб./см.п.",
+          "priceValue": 0.3,
+          "unit": "cmp"
+        },
+        {
+          "name": "Сверление сквозных отверстий до Ø32 мм, в других, не бетонных стенах",
+          "price": "от 0,22 руб./см.п.",
+          "priceValue": 0.22,
+          "unit": "cmp"
+        }
+      ]
+    },
+    "cable_laying": {
+      "name": "Прокладка кабелей",
+      "icon": "bolt",
+      "description": "Работы по прокладке кабелей и монтажу кабельных систем",
+      "services": [
+        {
+          "name": "Прокладка кабеля открытым способом, сечением жил до 6 мм кв.",
+          "price": "от 1 руб./м.п.",
+          "priceValue": 1,
+          "unit": "mp"
+        },
+        {
+          "name": "Прокладка кабеля открытым способом, сечением жил от 6 мм кв. до 16 мм кв.",
+          "price": "от 1 руб./м.п.",
+          "priceValue": 1,
+          "unit": "mp"
+        },
+        {
+          "name": "Монтаж кабель-канала до 20х10 мм",
+          "price": "от 1,5 руб./м.п.",
+          "priceValue": 1.5,
+          "unit": "mp"
+        },
+        {
+          "name": "Монтаж кабель-канала от 20х10 до 100х60 мм",
+          "price": "от 2 руб./м.п.",
+          "priceValue": 2,
+          "unit": "mp"
+        },
+        {
+          "name": "Монтаж труб,гофры, металлорукава до Ø25 мм",
+          "price": "от 2 руб./м.п.",
+          "priceValue": 2,
+          "unit": "mp"
+        },
+        {
+          "name": "Монтаж труб,гофры, металлорукава от Ø25 мм",
+          "price": "от 2,8 руб./м.п.",
+          "priceValue": 2.8,
+          "unit": "mp"
+        }
+      ]
+    },
+    "connections": {
+      "name": "Подключения и соединения",
+      "icon": "link",
+      "description": "Работы по подключению и соединению кабелей",
+      "services": [
+        {
+          "name": "Подключение жил кабелей, сечением до 6 мм кв.",
+          "price": "от 2 руб./шт.",
+          "priceValue": 2,
+          "unit": "item"
+        },
+        {
+          "name": "Подключение жил кабелей, сечением от 6 мм кв. до 16 мм кв.",
+          "price": "от 3 руб./шт.",
+          "priceValue": 3,
+          "unit": "item"
+        },
+        {
+          "name": "Расключение распределительной коробки до 4-х кабелей",
+          "price": "от 10 руб./шт.",
+          "priceValue": 10,
+          "unit": "item"
+        },
+        {
+          "name": "Расключение распределительной коробки до 8-х кабелей",
+          "price": "от 18 руб./шт.",
+          "priceValue": 18,
+          "unit": "item"
+        }
+      ]
+    },
+    "electrical_equipment": {
+      "name": "Электроустановочное оборудование",
+      "icon": "plug",
+      "description": "Монтаж розеток, выключателей, распределительных коробок",
+      "services": [
+        {
+          "name": "Монтаж подрозетников",
+          "price": "от 2 руб./шт.",
+          "priceValue": 2,
+          "unit": "item"
+        },
+        {
+          "name": "Монтаж распределительной коробки (открытой установки)",
+          "price": "от 1 руб./шт.",
+          "priceValue": 1,
+          "unit": "item"
+        },
+        {
+          "name": "Монтаж распределительной коробки (внутр. установки)",
+          "price": "от 2 руб./шт.",
+          "priceValue": 2,
+          "unit": "item"
+        }
+      ]
+    },
+    "lighting": {
+      "name": "Осветительные приборы",
+      "icon": "lightbulb",
+      "description": "Установка и подключение осветительных приборов",
+      "services": [
+        {
+          "name": "Установка и подключение встраиваемых светильников в готовые отверстия",
+          "price": "от 6 руб./шт.",
+          "priceValue": 6,
+          "unit": "item"
+        },
+        {
+          "name": "Установка и подключение светильников типа \"Бра\"",
+          "price": "от 14 руб./шт.",
+          "priceValue": 14,
+          "unit": "item"
+        },
+        {
+          "name": "Установка и подключение многорожкового светильника",
+          "price": "от 38 руб./шт.",
+          "priceValue": 38,
+          "unit": "item"
+        },
+        {
+          "name": "Подключение патрона для временного освещения",
+          "price": "от 2 руб./шт.",
+          "priceValue": 2,
+          "unit": "item"
+        },
+        {
+          "name": "Монтаж светодиодной ленты",
+          "price": "от 4 руб./м.п.",
+          "priceValue": 4,
+          "unit": "mp"
+        }
+      ]
+    },
+    "appliances": {
+      "name": "Бытовая техника",
+      "icon": "utensils",
+      "description": "Подключение бытовой техники и мощных электроприборов",
+      "services": [
+        {
+          "name": "Устройство и подключение розетки для электроплиты",
+          "price": "от 14 руб./шт.",
+          "priceValue": 14,
+          "unit": "item"
+        },
+        {
+          "name": "Подключение варочной поверхности, индукционной плиты, электроплиты",
+          "price": "от 34 руб./шт.",
+          "priceValue": 34,
+          "unit": "item"
+        }
+      ]
+    },
+    "external_works": {
+      "name": "Наружные работы",
+      "icon": "tree",
+      "description": "Работы по прокладке кабелей вне помещений",
+      "services": [
+        {
+          "name": "Устройство траншеи под кабель",
+          "price": "от 20 руб./м.п.",
+          "priceValue": 20,
+          "unit": "mp"
+        }
+      ]
+    }
+  }
+};
+
+// Главная функция инициализации
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Сайт загружен! Инициализируем...');
+    
+    // Инициализация главных вкладок
+    initMainTabs();
+    
+    // Загрузка цен из встроенных данных
+    displayPrices(pricesData.services);
+    
+    console.log('Все компоненты инициализированы!');
+});
+
+// Остальные функции остаются без изменений...
+function initMainTabs() {
+    const tabLinks = document.querySelectorAll('.tab-link');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    function showTab(tabName) {
+        // Скрыть все вкладки
+        tabContents.forEach(tab => {
+            tab.style.display = 'none';
+            tab.classList.remove('active');
+        });
+        
+        // Показать выбранную вкладку
+        const targetTab = document.getElementById(tabName + '-content');
+        if (targetTab) {
+            targetTab.style.display = 'block';
+            targetTab.classList.add('active');
+        }
+        
+        // Обновить активные ссылки
+        tabLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('data-tab') === tabName) {
+                link.classList.add('active');
+            }
+        });
+
+        // Плавная прокрутка к верху с учетом шапки
+        setTimeout(() => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }, 100);
+    }
+
+    // Обработчики кликов
+    tabLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const tabName = this.getAttribute('data-tab');
+            showTab(tabName);
+        });
+    });
+
+    // Показать первую вкладку
+    showTab('main');
+}
+
+function displayPrices(services) {
+    const container = document.getElementById('prices-container');
+    if (!container) return;
+
+    let html = '';
+
+    for (const [key, category] of Object.entries(services)) {
+        html += `
+            <div class="price-category">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0"><i class="fas fa-${category.icon} me-2"></i>${category.name}</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">${category.description}</p>
+                        <div class="table-responsive">
+                            <table class="table table-striped price-table">
+                                <thead>
+                                    <tr>
+                                        <th>Наименование услуги</th>
+                                        <th class="text-end">Стоимость</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+        `;
+
+        category.services.forEach(service => {
+            html += `
+                <tr>
+                    <td>${service.name}</td>
+                    <td class="text-end fw-bold text-primary">${service.price}</td>
+                </tr>
+            `;
+        });
+
+        html += `
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    container.innerHTML = html;
+}
+        // Главная функция инициализации
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Сайт загружен! Инициализируем...');
+            
+            // Инициализация главных вкладок
+            initMainTabs();
+            
+            // Загрузка цен из JSON файла
+            loadPricesFromJSON();
+            
+            console.log('Все компоненты инициализированы!');
+        });
+
+       function initMainTabs() {
+    const tabLinks = document.querySelectorAll('.tab-link');
+    const tabContents = document.querySelectorAll('.tab-content');
+    const navbarCollapse = document.getElementById('navbarNav'); // Получаем меню
+
+    function showTab(tabName) {
+        // Скрыть все вкладки
+        tabContents.forEach(tab => {
+            tab.style.display = 'none';
+            tab.classList.remove('active');
+        });
+        
+        // Показать выбранную вкладку
+        const targetTab = document.getElementById(tabName + '-content');
+        if (targetTab) {
+            targetTab.style.display = 'block';
+            targetTab.classList.add('active');
+        }
+        
+        // Обновить активные ссылки
+        tabLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('data-tab') === tabName) {
+                link.classList.add('active');
+            }
+        });
+
+        // Закрыть меню на мобильных устройствах после выбора вкладки
+        if (navbarCollapse.classList.contains('show')) {
+            const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+                toggle: false
+            });
+            bsCollapse.hide();
+        }
+
+        // Плавная прокрутка к верху с учетом шапки
+        setTimeout(() => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }, 100);
+    }
+
+    // Обработчики кликов
+    tabLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const tabName = this.getAttribute('data-tab');
+            showTab(tabName);
+        });
+    });
+
+    // Показать первую вкладку
+    showTab('main');
+}
+        function loadPricesFromJSON() {
+    const container = document.getElementById('prices-container');
+    if (!container) return;
+
+    // Используем встроенные данные вместо загрузки из файла
+    displayPrices(pricesData.services);
+}
+
+        function displayPrices(services) {
+            const container = document.getElementById('prices-container');
+            if (!container) return;
+
+            let html = '';
+
+            for (const [key, category] of Object.entries(services)) {
+                html += `
+                    <div class="price-category">
+                        <div class="card">
+                            <div class="card-header bg-primary text-white">
+                                <h4 class="mb-0"><i class="fas fa-${category.icon} me-2"></i>${category.name}</h4>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">${category.description}</p>
+                                <div class="table-responsive">
+                                    <table class="table table-striped price-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Наименование услуги</th>
+                                                <th class="text-end">Стоимость</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                `;
+
+                category.services.forEach(service => {
+                    html += `
+                        <tr>
+                            <td>${service.name}</td>
+                            <td class="text-end fw-bold text-primary">${service.price}</td>
+                        </tr>
+                    `;
+                });
+
+                html += `
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            container.innerHTML = html;
+        }
+    </script>
 </body>
 </html>
