@@ -908,10 +908,10 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('Все компоненты инициализированы!');
 });
 
-// Остальные функции остаются без изменений...
 function initMainTabs() {
     const tabLinks = document.querySelectorAll('.tab-link');
     const tabContents = document.querySelectorAll('.tab-content');
+    const navbarCollapse = document.getElementById('navbarNav');
 
     function showTab(tabName) {
         // Скрыть все вкладки
@@ -934,6 +934,14 @@ function initMainTabs() {
                 link.classList.add('active');
             }
         });
+
+        // Закрыть меню на мобильных устройствах после выбора вкладки
+        if (window.innerWidth < 992 && navbarCollapse.classList.contains('show')) {
+            const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+                toggle: false
+            });
+            bsCollapse.hide();
+        }
 
         // Плавная прокрутка к верху с учетом шапки
         setTimeout(() => {
